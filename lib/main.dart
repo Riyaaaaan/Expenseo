@@ -1,5 +1,6 @@
 import 'package:expenseo/database/expense_database.dart';
 import 'package:expenseo/screens/home_page.dart';
+import 'package:expenseo/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,8 +9,11 @@ void main() async {
   //init db
   await ExpenseDatabase.initialize();
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => ExpenseDatabase(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ExpenseDatabase()),
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
+      ],
       child: const MyApp(),
     ),
   );
@@ -22,10 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: Provider.of<ThemeProvider>(context).themedata,
       home: HomePage(),
     );
   }

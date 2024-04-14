@@ -18,7 +18,7 @@ class MyListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 25),
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
       child: Slidable(
         endActionPane: ActionPane(motion: const StretchMotion(), children: [
           //settings
@@ -40,11 +40,20 @@ class MyListTile extends StatelessWidget {
         ]),
         child: Container(
           decoration: BoxDecoration(
-              color: Colors.grey.shade200,
-              borderRadius: BorderRadius.circular(8)),
+            color: Colors.grey.shade200,
+            borderRadius: BorderRadius.circular(8),
+          ),
           child: ListTile(
-            title: Text(title),
-            trailing: Text(trailing),
+            title: Text(
+              title,
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.tertiary, fontSize: 18),
+            ),
+            trailing: Text(
+              trailing,
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.tertiary, fontSize: 16),
+            ),
           ),
         ),
       ),

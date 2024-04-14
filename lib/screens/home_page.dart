@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:expenseo/bar_graph/bar_graph.dart';
+import 'package:expenseo/components/my_drawer.dart';
 import 'package:expenseo/database/expense_database.dart';
 import 'package:expenseo/helper/helper_functions.dart';
 import 'package:expenseo/models/expense.dart';
@@ -145,7 +146,7 @@ class _HomePageState extends State<HomePage> {
           child: const Icon(Icons.add),
         ),
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Theme.of(context).colorScheme.background,
           title: FutureBuilder(
             future: _calculateCurrentMonthTotal,
             builder: (context, snapshot) {
@@ -168,6 +169,7 @@ class _HomePageState extends State<HomePage> {
             },
           ),
         ),
+        drawer: const MyDrawer(),
         body: SafeArea(
           child: Column(
             children: [
